@@ -11,6 +11,7 @@
 #include<map>
 #include<string>
 #include<functional>
+#include<algorithm>
 
 class HappyLetterDiv
 {
@@ -57,9 +58,9 @@ std::string HappyLetterDiv::letterLeaved(std::multimap<int,char,std::greater<int
 //    }
 
     std::string leaved;
-    for(auto i = sortedLetter.begin();i != sortedLetter.end();i++)//判断第i个元素能不能留下
+    for(auto i = sortedLetter.begin();i != sortedLetter.end() && i->first != 0;i++)//判断第i个元素能不能留下
     {
-        if(i->first == 0) break;//为0的话，元素不存在(包括后面)
+        //if(i->first == 0) break;//为0的话，元素不存在(包括后面)
 
         auto j = sortedLetter.begin();
         if(j == i) j++;//最后再与第i个的个数比较
@@ -67,12 +68,16 @@ std::string HappyLetterDiv::letterLeaved(std::multimap<int,char,std::greater<int
         if(++j == i) j++;
         //int temp = sortedLetter.begin() == i ? ++sortedLetter.begin()->first:sortedLetter.begin()->first; 
         for(;j != sortedLetter.end();j++)
-        {    
+        { 
+            if(j ==i) continue;
             temp = abs(temp - j->first);
         }
         if(i->first > temp) leaved += i->second;
     }
     std::cout << leaved << std::endl;
+    std::sort(leaved.begin(),leaved.end());
+    std::cout << leaved << std::endl;
+    std::sort(leaved.begin(),leaved.end());
     return ":" + leaved;
 }
 std::string HappyLetterDiv::getHappyLetters()
