@@ -21,7 +21,7 @@ int main()
     d += 1;
     std::cout << "the value of d:" << d <<  std::endl;
     std::cout << "the value of i():" << i() << std::endl << " e:" << e << " d:"  << d << std::endl;
-    //std::cout << " e:" << e << " d:" << d << std::endl;
+    std::cout << " e:" << e << " d:" << d << std::endl;
     return 0; 
 }
 
